@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useMemo, useState } from 'react';
 import { MarketChart } from '../features/market/components/market-chart';
+import { AuthControl } from '../features/auth/components/auth-control';
 
 type Analysis = {
   symbol: string; interval: string; price: number; signal: string; score: number;
@@ -155,6 +156,7 @@ export default function Home() {
             <p>{activeView === 'dashboard' ? 'Monitor the market, review signals, and continue building your AI trading workspace.' : activeView === 'analysis' ? 'Generate a structured technical trade plan from live market data.' : 'Save product ideas, trading workflows, and roadmap decisions.'}</p>
           </div>
           <div className="top-actions">
+            <AuthControl />
             <button className="ghost-button" type="button">Notifications</button>
             <div className="profile-chip"><span>SK</span><div><strong>Shiran</strong><small>Project Owner</small></div></div>
           </div>
