@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useEffect, useMemo, useState } from 'react';
+import { MarketChart } from '../features/market/components/market-chart';
 
 type Analysis = {
   symbol: string; interval: string; price: number; signal: string; score: number;
@@ -172,7 +173,7 @@ export default function Home() {
               <article className="panel market-panel">
                 <div className="panel-heading"><div><span className="eyebrow">MARKET SNAPSHOT</span><h2>{data?.symbol || 'BTCUSDT'}</h2></div><button className="link-button" onClick={() => setActiveView('analysis')}>Open full analysis →</button></div>
                 <div className="price-row"><div><strong>${data ? money(data.price) : 'Loading…'}</strong><span>{data?.direction || 'Connecting to market data'}</span></div><div className={`signal-badge ${data?.signal.toLowerCase() || 'wait'}`}><small>AI SIGNAL</small><strong>{data?.signal || 'WAIT'}</strong></div></div>
-                <div className="chart-placeholder"><span>Live chart module</span><div className="chart-line" /></div>
+                {data ? <MarketChart price={data.price} /> : <div className="chart-placeholder"><span>Connecting to live chart…</span></div>}
                 <div className="quick-levels">
                   <div><span>Support</span><strong>${data ? money(data.support) : '—'}</strong></div>
                   <div><span>Resistance</span><strong>${data ? money(data.resistance) : '—'}</strong></div>
