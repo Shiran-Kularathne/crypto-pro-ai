@@ -42,6 +42,16 @@ const watchlist = [
 
 function buildAssistantReply(message: string) {
   const text = message.toLowerCase();
+  const singlish = /\b(karanna|karamu|puluwan|puluwanda|kohomada|mokak|api|mata|oyata|aluth|weda|hadanna|danna|ganna|thiyenawa|nadda|hari|eka|tika)\b/.test(text);
+  if (singlish && (text.includes('chat') || text.includes('katha') || text.includes('puluwanda'))) {
+    return 'Ow, puluwan. Oya Singlish walinma ahanna. Mama project ideas, dashboard changes, trading logic, saha roadmap decisions gena reply karannam.';
+  }
+  if (singlish && (text.includes('dashboard') || text.includes('ui') || text.includes('weda'))) {
+    return 'Hari, me idea eka dashboard improvement ekak widihata note kala. Api eka feature task ekak karala next sprint eke implement karamu.';
+  }
+  if (singlish && (text.includes('buy') || text.includes('sell') || text.includes('trade'))) {
+    return 'Hari, market data balala risk eka consider karala plan ekak hadamu. Real trade ekakata kalin paper trading use karanna.';
+  }
   if (text.includes('elliott') || text.includes('wave')) {
     return 'Good idea. Elliott Wave should be combined with Fibonacci, volume, RSI, and trend confirmation instead of being used alone.';
   }
