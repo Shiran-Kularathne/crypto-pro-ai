@@ -222,8 +222,13 @@ export default function Home() {
         {activeView === 'analysis' && (
           <>
             <section className="controls panel">
-              <label>Cryptocurrency<select value={symbol} onChange={(event) => setSymbol(event.target.value)}><option value="BTCUSDT">Bitcoin (BTC/USDT)</option><option value="ETHUSDT">Ethereum (ETH/USDT)</option><option value="BNBUSDT">BNB (BNB/USDT)</option><option value="SOLUSDT">Solana (SOL/USDT)</option><option value="XRPUSDT">XRP (XRP/USDT)</option></select></label>
-              <label>Timeframe<select value={interval} onChange={(event) => setInterval(event.target.value)}><option value="15m">15 Minutes</option><option value="1h">1 Hour</option><option value="4h">4 Hours</option><option value="1d">1 Day</option></select></label>
+              <label>Cryptocurrency<select value={symbol} onChange={(event) => setSymbol(event.target.value)}>
+                <option value="BTCUSDT">Bitcoin (BTC/USDT)</option><option value="ETHUSDT">Ethereum (ETH/USDT)</option><option value="BNBUSDT">BNB (BNB/USDT)</option><option value="SOLUSDT">Solana (SOL/USDT)</option><option value="XRPUSDT">XRP (XRP/USDT)</option>
+                <option value="DOGEUSDT">Dogecoin (DOGE/USDT)</option><option value="ADAUSDT">Cardano (ADA/USDT)</option><option value="AVAXUSDT">Avalanche (AVAX/USDT)</option><option value="DOTUSDT">Polkadot (DOT/USDT)</option><option value="LINKUSDT">Chainlink (LINK/USDT)</option><option value="LTCUSDT">Litecoin (LTC/USDT)</option><option value="TRXUSDT">TRON (TRX/USDT)</option><option value="ATOMUSDT">Cosmos (ATOM/USDT)</option><option value="NEARUSDT">NEAR Protocol (NEAR/USDT)</option><option value="APTUSDT">Aptos (APT/USDT)</option><option value="ARBUSDT">Arbitrum (ARB/USDT)</option><option value="OPUSDT">Optimism (OP/USDT)</option><option value="SUIUSDT">Sui (SUI/USDT)</option><option value="PEPEUSDT">Pepe (PEPE/USDT)</option><option value="SHIBUSDT">Shiba Inu (SHIB/USDT)</option><option value="UNIUSDT">Uniswap (UNI/USDT)</option><option value="ETCUSDT">Ethereum Classic (ETC/USDT)</option><option value="FILUSDT">Filecoin (FIL/USDT)</option><option value="HBARUSDT">Hedera (HBAR/USDT)</option>
+              </select></label>
+              <label>Timeframe<select value={interval} onChange={(event) => setInterval(event.target.value)}>
+                <option value="1m">1 Minute</option><option value="3m">3 Minutes</option><option value="5m">5 Minutes</option><option value="15m">15 Minutes</option><option value="30m">30 Minutes</option><option value="1h">1 Hour</option><option value="2h">2 Hours</option><option value="4h">4 Hours</option><option value="6h">6 Hours</option><option value="8h">8 Hours</option><option value="12h">12 Hours</option><option value="1d">1 Day</option><option value="3d">3 Days</option><option value="1w">1 Week</option><option value="1M">1 Month</option>
+              </select></label>
               <button className="primary-button" onClick={analyze} disabled={loading}>{loading ? 'Analyzing…' : 'Run Analysis'}</button>
             </section>
             {error && <p className="error">{error}</p>}

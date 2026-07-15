@@ -3,8 +3,12 @@ import { atr, ema, rsi } from '../../../lib/indicators';
 import { getKlines } from '../../../services/binance/market';
 import type { Analysis } from '../../../types/analysis';
 
-const ALLOWED = new Set(['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'SOLUSDT', 'XRPUSDT']);
-const INTERVALS = new Set(['15m', '1h', '4h', '1d']);
+const ALLOWED = new Set([
+  'BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'SOLUSDT', 'XRPUSDT', 'DOGEUSDT', 'ADAUSDT', 'AVAXUSDT',
+  'DOTUSDT', 'LINKUSDT', 'LTCUSDT', 'TRXUSDT', 'ATOMUSDT', 'NEARUSDT', 'APTUSDT', 'ARBUSDT',
+  'OPUSDT', 'SUIUSDT', 'PEPEUSDT', 'SHIBUSDT', 'UNIUSDT', 'ETCUSDT', 'FILUSDT', 'HBARUSDT',
+]);
+const INTERVALS = new Set(['1m', '3m', '5m', '15m', '30m', '1h', '2h', '4h', '6h', '8h', '12h', '1d', '3d', '1w', '1M']);
 
 export async function GET(request: NextRequest) {
   try {
