@@ -20,6 +20,10 @@ export async function GET(request: NextRequest) {
     const lows = rows.map((r) => Number(r[3]));
     const closes = rows.map((r) => Number(r[4]));
     const volumes = rows.map((r) => Number(r[5]));
+    const candles = rows.slice(-80).map((r) => ({
+      time: Math.floor(Number(r[0]) / 1000), open: Number(r[1]), high: Number(r[2]),
+      low: Number(r[3]), close: Number(r[4]),
+    }));
     const price = closes.at(-1)!;
     const currentRsi = rsi(closes);
     const ema20 = ema(closes, 20);
@@ -61,7 +65,7 @@ export async function GET(request: NextRequest) {
       rsi: currentRsi, ema20, ema50, ema200, atr: currentAtr,
       support: recentLow, resistance: recentHigh,
       entryLow, entryHigh, stopLoss, takeProfit1, takeProfit2, reasons,
-      disclaimer: 'This is educational technical analysis only. Profit is not guaranteed.'
+      disclaimer: 'This is educational technical analysis only. Profit is not guaranteed.', candles,
     };
     return NextResponse.json(analysis);
   } catch (error) {

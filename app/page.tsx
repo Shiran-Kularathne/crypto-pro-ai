@@ -9,6 +9,7 @@ type Analysis = {
   direction: string; rsi: number; ema20: number; ema50: number; ema200: number;
   atr: number; support: number; resistance: number; entryLow: number; entryHigh: number;
   stopLoss: number; takeProfit1: number; takeProfit2: number; reasons: string[]; disclaimer: string;
+  candles: Array<{ time: number; open: number; high: number; low: number; close: number }>;
 };
 
 type ChatMessage = {
@@ -188,7 +189,7 @@ export default function Home() {
               <article className="panel market-panel">
                 <div className="panel-heading"><div><span className="eyebrow">MARKET SNAPSHOT</span><h2>{data?.symbol || 'BTCUSDT'}</h2></div><button className="link-button" onClick={() => setActiveView('analysis')}>Open full analysis →</button></div>
                 <div className="price-row"><div><strong>${data ? money(data.price) : 'Loading…'}</strong><span>{data?.direction || 'Connecting to market data'}</span></div><div className={`signal-badge ${data?.signal.toLowerCase() || 'wait'}`}><small>AI SIGNAL</small><strong>{data?.signal || 'WAIT'}</strong></div></div>
-                {data ? <MarketChart price={data.price} /> : <div className="chart-placeholder"><span>Connecting to live chart…</span></div>}
+                {data ? <MarketChart candles={data.candles} /> : <div className="chart-placeholder"><span>Connecting to live chart…</span></div>}
                 <div className="quick-levels">
                   <div><span>Support</span><strong>${data ? money(data.support) : '—'}</strong></div>
                   <div><span>Resistance</span><strong>${data ? money(data.resistance) : '—'}</strong></div>
