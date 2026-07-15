@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useMemo, useState } from 'react';
 import { MarketChart } from '../features/market/components/market-chart';
 import { AuthControl } from '../features/auth/components/auth-control';
+import { LiveWatchlist } from '../features/market/components/live-watchlist';
 
 type Analysis = {
   symbol: string; interval: string; price: number; signal: string; score: number;
@@ -32,13 +33,6 @@ const initialMessages: ChatMessage[] = [
     content: 'Welcome to the Crypto-Pro-AI Project Chat. Share a product idea, feature request, trading question, or improvement you want to add.',
     createdAt: new Date().toISOString(),
   },
-];
-
-const watchlist = [
-  { symbol: 'BTC', name: 'Bitcoin', move: '+2.48%' },
-  { symbol: 'ETH', name: 'Ethereum', move: '+1.16%' },
-  { symbol: 'SOL', name: 'Solana', move: '+4.08%' },
-  { symbol: 'XRP', name: 'XRP', move: '-0.62%' },
 ];
 
 function buildAssistantReply(message: string) {
@@ -200,9 +194,7 @@ export default function Home() {
 
               <article className="panel watchlist-panel">
                 <div className="panel-heading"><div><span className="eyebrow">WATCHLIST</span><h2>Market Movers</h2></div><span className="mini-status">Live</span></div>
-                <div className="watchlist">
-                  {watchlist.map((coin) => <div className="watch-row" key={coin.symbol}><div className="coin-icon">{coin.symbol.slice(0, 1)}</div><div className="coin-name"><strong>{coin.symbol}</strong><span>{coin.name}</span></div><strong className={coin.move.startsWith('+') ? 'positive' : 'negative'}>{coin.move}</strong></div>)}
-                </div>
+                <LiveWatchlist />
                 <button className="secondary-button full-width" type="button">Manage Watchlist</button>
               </article>
             </section>
